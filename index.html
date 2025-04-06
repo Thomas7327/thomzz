@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulasi Warnet 3D</title>
+  <style>
+    body { margin: 0; overflow: hidden; background-color: #222; }
+    canvas { display: block; }
+    #moneyDisplay, #powerStatus {
+      position: absolute;
+      top: 10px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 10px 20px;
+      font-family: Arial, sans-serif;
+      border-radius: 10px;
+      font-size: 18px;
+    }
+    #moneyDisplay { left: 10px; }
+    #powerStatus { right: 10px; cursor: pointer; }
+    #credit {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      color: white;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      background: rgba(0,0,0,0.5);
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
+    .mobile-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 10;
+    }
+    .btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid white;
+      color: white;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+<div id="moneyDisplay">Uang: Rp <span id="money">0</span></div>
+<div id="powerStatus">Listrik: Nyala</div>
+<div id="credit">Game by Thomas</div>
+<div class="mobile-controls">
+  <div class="btn" id="btn-left">←</div>
+  <div class="btn" id="btn-up">↑</div>
+  <div class="btn" id="btn-down">↓</div>
+  <div class="btn" id="btn-right">→</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+<script>
+// Game logic here (placeholder)
+alert('Game Simulasi Warnet 3D siap dimainkan!');
+</script>
+</body>
+</html>
