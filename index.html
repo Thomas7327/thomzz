@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Slot Online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .reel {
+      transition: transform 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center">
+  <h1 class="text-4xl font-bold mb-6">Game Slot Online</h1>  <div class="saldo text-xl mb-4">Saldo: <span id="saldo">1000</span> koin</div>  <div class="grid grid-cols-3 gap-4 mb-6" id="slot">
+    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
+    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
+    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
+    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
+    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
+    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
+    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
+    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
+    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
+  </div>  <div class="space-x-4">
+    <button onclick="spin()" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded">SPIN (100)</button>
+    <button onclick="topUp()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Top Up +500</button>
+  </div>  <script>
+    const symbols = [
+      '7', 'BAR', 'CERI', 'LEMON', 'ANGKA'
+    ];
+
+    const images = {
+      '7': '7',
+      'BAR': 'BAR',
+      'CERI': '🍒',
+      'LEMON': '🍋',
+      'ANGKA': '🔢'
+    };
+
+    const slotDivs = document.querySelectorAll('#slot div');
+    let saldo = 1000;
+
+    function spin() {
+      if (saldo < 100) {
+        alert('Saldo tidak cukup!');
+        return;
+      }
+      saldo -= 100;
+      updateSaldo();
+
+      let hasil = [];
+      slotDivs.forEach((div, i) => {
+        div.classList.add('scale-110');
+        setTimeout(() => {
+          const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+          div.textContent = images[symbol];
+          div.classList.remove('scale-110');
+          hasil.push(symbol);
+
+          // Setelah semua selesai, cek hasil tengah
+          if (hasil.length === 9) {
+            if (hasil[3] === hasil[4] && hasil[4] === hasil[5]) {
+              alert('MENANG! +500 koin');
+              saldo += 500;
+              updateSaldo();
+            }
+          }
+        }, 100 + i * 100);
+      });
+    }
+
+    function topUp() {
+      saldo += 500;
+      updateSaldo();
+    }
+
+    function updateSaldo() {
+      document.getElementById('saldo').textContent = saldo;
+    }
+  </script></body>
+</html>
