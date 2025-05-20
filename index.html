@@ -1,81 +1,54 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Slot Online</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JakWifi Connect</title>
   <style>
-    .reel {
-      transition: transform 0.3s ease-in-out;
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #f0f0f0;
+    }
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    #status {
+      margin-top: 20px;
+      font-size: 24px;
+      color: green;
+      display: none;
     }
   </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center">
-  <h1 class="text-4xl font-bold mb-6">Game Slot Online</h1>  <div class="saldo text-xl mb-4">Saldo: <span id="saldo">1000</span> koin</div>  <div class="grid grid-cols-3 gap-4 mb-6" id="slot">
-    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
-    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
-    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
-    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
-    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
-    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
-    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
-    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
-    <div class="w-24 h-24 bg-gray-800 border-4 border-yellow-400 flex items-center justify-center rounded-lg reel text-3xl">?</div>
-  </div>  <div class="space-x-4">
-    <button onclick="spin()" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded">SPIN (100)</button>
-    <button onclick="topUp()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Top Up +500</button>
-  </div>  <script>
-    const symbols = [
-      '7', 'BAR', 'CERI', 'LEMON', 'ANGKA'
-    ];
+<body>
 
-    const images = {
-      '7': '7',
-      'BAR': 'BAR',
-      'CERI': '🍒',
-      'LEMON': '🍋',
-      'ANGKA': '🔢'
-    };
+  <h1>Sambungkan ke JakWifi</h1>
+  <button onclick="connectToJakWifi()">Sambungkan</button>
+  <div id="status">Tersambung ke wifi</div>
 
-    const slotDivs = document.querySelectorAll('#slot div');
-    let saldo = 1000;
+  <!-- Audio yang diunggah -->
+  <audio id="wifiSound" src="ssstik.io_1746933207946.mp4"></audio>
 
-    function spin() {
-      if (saldo < 100) {
-        alert('Saldo tidak cukup!');
-        return;
-      }
-      saldo -= 100;
-      updateSaldo();
+  <script>
+    function connectToJakWifi() {
+      // Simulasi "tersambung ke wifi"
+      document.getElementById("status").style.display = "block";
 
-      let hasil = [];
-      slotDivs.forEach((div, i) => {
-        div.classList.add('scale-110');
-        setTimeout(() => {
-          const symbol = symbols[Math.floor(Math.random() * symbols.length)];
-          div.textContent = images[symbol];
-          div.classList.remove('scale-110');
-          hasil.push(symbol);
-
-          // Setelah semua selesai, cek hasil tengah
-          if (hasil.length === 9) {
-            if (hasil[3] === hasil[4] && hasil[4] === hasil[5]) {
-              alert('MENANG! +500 koin');
-              saldo += 500;
-              updateSaldo();
-            }
-          }
-        }, 100 + i * 100);
+      // Putar audio
+      const audio = document.getElementById("wifiSound");
+      audio.volume = 1.0;
+      audio.play().catch(e => {
+        alert("Audio tidak bisa diputar otomatis. Klik lagi atau izinkan suara di browser.");
       });
     }
-
-    function topUp() {
-      saldo += 500;
-      updateSaldo();
-    }
-
-    function updateSaldo() {
-      document.getElementById('saldo').textContent = saldo;
-    }
-  </script></body>
+  </script>
+</body>
 </html>
